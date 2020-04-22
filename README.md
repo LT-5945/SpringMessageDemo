@@ -1,0 +1,3 @@
+目前可用的接口：
+登陆：获取uid和givenPWD两个String类型变量
+加好友：获取uid和friend_uid两个String类型变量
