@@ -6,10 +6,57 @@
 </head>
 <body>
 <p>请登录。</p>
-<form action="/login" method="post">
-    <input name="uid" placeholder="uid" type="text"/>
-    <input name="givenPWD" placeholder="密码" type="password" />
-    <input type="submit" value="登陆" />
+<script type="text/javascript">
+    function login() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: '/login',
+            contentType: "application/json",
+            data:JSON.stringify({
+                "uid":"17080213",
+                "username": username,
+                "password": password,
+                "phoneNum":"123",
+                "friendUidList":"123"
+            }),
+            success: function (result) {
+                console.log("data is :" + result)
+                if (result.code === "200") {
+                    alert("登陆成功");
+                    window.location.href = "../home/home_page.html";
+                }else {
+                    alert(result.message)
+                }
+            }
+        });
+    }
+</script>
+<form action="" id="loginForm" class="fh5co-form animate-box" onsubmit="return false" method="post"
+      data-animate-effect="fadeInLeft">
+    <h2>Sign In</h2>
+    <div class="form-group">
+        <label for="username" class="sr-only">Username</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Username"
+               autocomplete="off">
+    </div>
+    <div class="form-group">
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+               autocomplete="off">
+    </div>
+    <div class="form-group">
+        <label for="remember"><input type="checkbox" id="remember"> Remember Me</label>
+    </div>
+    <div class="form-group">
+        <p>Not registered? <a href="sign-up2.html">Sign Up</a> | <a href="forgot2.html">Forgot Password?</a>
+        </p>
+    </div>
+    <div class="form-group">
+        <input type="button" onclick="login()" value="Sign In" class="btn btn-primary">
+    </div>
 </form>
 </body>
 </html>

@@ -7,10 +7,35 @@
 <body>
 <p>请发送消息</p>
 <form action="/send" method="post">
-    <input name="uid" placeholder="uid" type="text"/>
-    <input name="friend_uid" placeholder="friend_uid" type="text"/>
-    <input name="message" placeholder="message" type="text"/>
-    <input type="submit" value="查找" />
+    <input id="uid" name="uid" placeholder="uid" type="text"/>
+    <input id="friend_uid "name="friend_uid" placeholder="friend_uid" type="text"/>
+    <input id="message" name="message" placeholder="message" type="text"/>
+    <input type="button" onclick="send()" value="发送" />
 </form>
+<script type="text/javascript">
+    function send() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: '/user/login',
+            contentType: "application/json",
+            data:JSON.stringify({
+                "username": username,
+                "password": password
+            }),
+            success: function (result) {
+                console.log("data is :" + result)
+                if (result.code == 200) {
+                    alert("登陆成功");
+                    window.location.href = "../home/home_page.html";
+                }else {
+                    alert(result.message)
+                }
+            }
+        });
+    }
+</script>
 </body>
 </html>
