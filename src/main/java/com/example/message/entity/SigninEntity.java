@@ -3,13 +3,11 @@ package com.example.message.entity;
 import lombok.Data;
 
 @Data
-public class UserEntity {
-    //按照目前的设计，用户可以用uid，phoneNum和username注册登陆
+public class SigninEntity {
     private String uid;
     private String username;
     private String password;
     private String phoneNum;
-    private String friendUidList;
 
     public String getUid() {
         return uid;
@@ -41,13 +39,5 @@ public class UserEntity {
 
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
-    }
-
-    public String getFriendUidList() {
-        return friendUidList;
-    }
-
-    public void setFriendUidList(String friendUidList) {
-        this.friendUidList = friendUidList;
     }
 }

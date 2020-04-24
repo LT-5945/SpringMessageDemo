@@ -18,7 +18,7 @@ public class UserDaoImplement implements UserDao{
 
     @Override
     public int create(String uid, String username, String password, String phoneNum) {
-        return jdbcTemplate.update("INSERT INTO user(uid, username, password, phoneNum) values (?,?,?,?)",
+        return jdbcTemplate.update("INSERT INTO user(uid, username, password, phone_num) values (?,?,?,?)",
                                                                             uid, username, password, phoneNum);
     }
 
