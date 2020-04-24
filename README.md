@@ -1,3 +1,14 @@
-目前可用的接口：
-登陆：获取uid和givenPWD两个String类型变量
-加好友：获取uid和friend_uid两个String类型变量
+API：
+注册的json样例：
+    {
+    	"uid":"17080211",
+    	"username":"py",
+    	"password":"123",
+    	"phoneNum":"13581951234"
+    }
+
+登陆的json样例：
+    {
+    	"uid":"17080213"
+    	"password":"123"，
+    }
