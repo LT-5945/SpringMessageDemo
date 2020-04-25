@@ -44,7 +44,7 @@ public class FriendDaoImplement implements FriendDao{
             friend_uid_list = friend_uid;
         }
         else{
-            friend_uid_list += friend_uid;
+            friend_uid_list = friend_uid_list + friend_uid + " ";//用空格隔开每个friend
         }
         return jdbcTemplate.update("UPDATE user SET friend_uid_list = ? WHERE (uid = ?)",friend_uid_list, uid);
     }

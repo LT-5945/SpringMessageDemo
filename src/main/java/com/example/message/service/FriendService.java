@@ -1,11 +1,12 @@
 package com.example.message.service;
 
+import com.example.message.entity.FriendEntity;
+
 public interface FriendService {
     /**
      *
-     * @param uid
-     * @param friend_uid
+     * @param friend
      * @return
      */
-    String addFriendByUid(String uid, String friend_uid);
+    String addFriendByUid(FriendEntity friend);
 }

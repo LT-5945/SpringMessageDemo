@@ -17,6 +17,7 @@ public class UserDaoImplement implements UserDao{
     }
 
     @Override
+    //重大问题：所有Unique属性的列都没做异常处理！！！！！！！
     public int create(String uid, String username, String password, String phoneNum) {
         return jdbcTemplate.update("INSERT INTO user(uid, username, password, phone_num) values (?,?,?,?)",
                                                                             uid, username, password, phoneNum);
