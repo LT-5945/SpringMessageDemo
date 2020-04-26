@@ -1,7 +1,7 @@
 package com.example.message.service;
 
-import com.example.message.entity.messageEntity;
+import com.example.message.entity.MessageEntity;
 
 public interface MessageService {
-    String send(messageEntity msg);
+    String send(MessageEntity msg);
 }

@@ -3,7 +3,7 @@ package com.example.message.entity;
 import lombok.Data;
 
 @Data
-public class messageEntity {
+public class MessageEntity {
     //private String msg_id;
     private String host_id;
     private String guest_id;
