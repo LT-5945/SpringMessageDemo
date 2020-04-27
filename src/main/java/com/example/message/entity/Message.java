@@ -29,4 +29,9 @@ public class Message {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public Message(String userId, String message) {
+        this.userId = userId;
+        this.message = message;
+    }
 }
