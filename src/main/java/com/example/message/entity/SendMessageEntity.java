@@ -1,15 +1,9 @@
 package com.example.message.entity;
 
-import lombok.Data;
-
-@Data
-public class MessageEntity {
-    //private String msg_id;
+public class SendMessageEntity {
     private String host_id;
     private String guest_id;
-    private String message;
     private String hub_id;
-
 
     public String getHost_id() {
         return host_id;
@@ -25,14 +19,6 @@ public class MessageEntity {
 
     public void setGuest_id(String guest_id) {
         this.guest_id = guest_id;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
     public String getHub_id() {

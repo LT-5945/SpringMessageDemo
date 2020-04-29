@@ -29,7 +29,7 @@ public class UserServiceImplement implements UserService {
         }
     }
 
-    @PostMapping("/login")
+    //@PostMapping("/login")
     @Override
     //此处接受的json内的变量命名必须和@RequestBody中的对象内变量严格对应（顺序和变量名）
     public String loginByUid(@RequestBody LoginByUidEntity login) {//可以直接接受json，但是需要调整UserEntity，换一个类来接收
