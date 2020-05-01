@@ -22,9 +22,13 @@ public class MessageServiceImplement implements MessageService {
         String host_id = msg.getHost_id();
         String guest_id = msg.getGuest_id();
         String message = msg.getMessage();
-        String hub_id = msg.getHub_id();
-        if(mdi.send(host_id, guest_id, message, hub_id)==500){
-            return "查询错误";
+        int msg_type = msg.getMsg_type();
+        int flag=mdi.send(host_id, guest_id, message, msg_type);
+        if(flag==500){
+            return "朋友列表为空";
+        }
+        else if(flag==404){
+            return "查无此朋友";
         }
         return "200";
     }
@@ -40,10 +44,10 @@ public class MessageServiceImplement implements MessageService {
 
     @PostMapping("/getMsg")
     @Override
+    //获取的令牌按目前的设计是一次发送，再也不管这条信息了，所以等websocket赶紧做好！！！！！！
     public String getMsg(@RequestBody SendMessageEntity sendMsg) {
         String host_id = sendMsg.getHost_id();
         String guest_id = sendMsg.getGuest_id();
-        String hub_id = sendMsg.getHub_id();
-        return mdi.get(host_id, guest_id, hub_id);
+        return mdi.get(host_id, guest_id);
     }
 }

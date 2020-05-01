@@ -39,10 +39,10 @@ http://localhost:8080/findfriend
 http://localhost:8080/send
 
     {
-    	"host_id":"17080213",
+    	"host_id":"17080214",
     	"guest_id":"17080211",
     	"message":"You are a guest user!",
-    	"hub_id":"002"
+    	"msg_type":100
     }
     
 查询消息的json样例：
@@ -51,6 +51,6 @@ http://localhost:8080/getMsg
 
     {
     	"host_id":"17080213",
-    	"guest_id":"17080212",
-    	"hub_id":"001"
+    	"guest_id":"17080211",
+    	"msg_type":100
     }

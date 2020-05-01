@@ -18,10 +18,10 @@ public class FriendServiceImplement implements FriendService{
         String uid = friend.getUid();
         String friend_uid = friend.getFriend_uid();
         String username = fdi.findFriendByUid(friend_uid);//获取用户名，为以后的确认加好友界面作准备，目前暂时不做该页面跳转
-        if(username.equals("null")){//接受返回的"null"
+        if(username.equals("Empty")){//接受返回的"Empty"朋友列表为空
             return "user not found";
         }
         int flag = fdi.insertFriend(uid, friend_uid);//加好友
-        return Integer.toString(flag);
+        return Integer.toString(flag);//可以为404或1
     }
 }

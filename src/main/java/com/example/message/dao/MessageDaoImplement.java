@@ -1,14 +1,15 @@
 package com.example.message.dao;
 
-import com.example.message.entity.Message;
 import com.example.message.entity.MessageEntity;
-import com.example.message.entity.SendMessageEntity;
+import com.example.message.entity.UserEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class MessageDaoImplement implements MessageDao {
@@ -20,33 +21,39 @@ public class MessageDaoImplement implements MessageDao {
     }
 
     @Override//将信息插入数据库
-    //目前只能接受符合规则的输入，一切异常输入和查无此人都没有做！！！
-    public int send(String host_id, String guest_id, String message, String hub_id) {
+    public int send(String host_id, String guest_id, String message, int msg_type) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         String msg_id = host_id + guest_id + df.format(new Date());// new Date()为获取当前系统时间
-        List<MessageEntity> msgInfo = jdbcTemplate.query("SELECT message FROM message " +
-                        "WHERE host_id=? AND guest_id=? AND hub_id=?",
-                (resultSet,i) ->{
-                    MessageEntity me = new MessageEntity();
-                    me.setMessage(resultSet.getString("message"));
-                    return me;
-                },host_id,guest_id,hub_id);
-        if(msgInfo.isEmpty()){
-            return 500;
+        List<UserEntity> userInfo = jdbcTemplate.query("SELECT friend_uid_list FROM user WHERE uid = ?",
+                (resultSet, i) -> {
+                    UserEntity user = new UserEntity();
+                    user.setFriendUidList(resultSet.getString("friend_uid_list"));
+                    return user;
+                }, host_id);//查询自己的friend_uid_list
+        UserEntity user = userInfo.get(0);//非空，new出的对象内元素皆为null
+        String friend_uid_list = user.getFriendUidList();
+        if(friend_uid_list == null || friend_uid_list.isEmpty()){//如果为空
+            return 500;//朋友列表为空
         }
-        return jdbcTemplate.update("INSERT INTO message(msg_id,host_id,guest_id,message,hub_id) values(?,?,?,?,?)",
-                msg_id, host_id, guest_id, message, hub_id);
+        Pattern pattern = Pattern.compile(guest_id);
+        Matcher matcher = pattern.matcher(friend_uid_list);
+        boolean result = matcher.find();
+        if(!result){
+            return 404;
+        }
+        return jdbcTemplate.update("INSERT INTO message(msg_id,host_id,guest_id,message,msg_type) values(?,?,?,?,?)",
+                msg_id, host_id, guest_id, message, msg_type);
     }
 
     @Override//客人主动获取
-    public String get(String host_id, String guest_id, String hub_id) {
+    public String get(String host_id, String guest_id) {
         List<MessageEntity> msgInfo = jdbcTemplate.query("SELECT message FROM message " +
-                "WHERE host_id=? AND guest_id=? AND hub_id=?",
+                "WHERE host_id=? AND guest_id=?",
                 (resultSet,i) ->{
                     MessageEntity me = new MessageEntity();
                     me.setMessage(resultSet.getString("message"));
                     return me;
-                },host_id,guest_id,hub_id);
+                },host_id,guest_id);
         if(msgInfo.isEmpty()){
             return "NOT FOUND";
         }

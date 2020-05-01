@@ -3,7 +3,7 @@ package com.example.message.entity;
 public class SendMessageEntity {
     private String host_id;
     private String guest_id;
-    private String hub_id;
+    private int msg_type;
 
     public String getHost_id() {
         return host_id;
@@ -21,11 +21,11 @@ public class SendMessageEntity {
         this.guest_id = guest_id;
     }
 
-    public String getHub_id() {
-        return hub_id;
+    public int getMsg_type() {
+        return msg_type;
     }
 
-    public void setHub_id(String hub_id) {
-        this.hub_id = hub_id;
+    public void setMsg_type(int msg_type) {
+        this.msg_type = msg_type;
     }
 }
