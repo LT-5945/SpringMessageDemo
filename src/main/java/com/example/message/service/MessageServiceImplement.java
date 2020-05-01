@@ -19,10 +19,13 @@ public class MessageServiceImplement implements MessageService {
     @PostMapping("/send")
     @Override
     public String send(@RequestBody MessageEntity msg) {//目的是存入数据库留下记录
-        String uid = msg.getHost_id();
-        String friend_uid = msg.getGuest_id();
+        String host_id = msg.getHost_id();
+        String guest_id = msg.getGuest_id();
         String message = msg.getMessage();
-        mdi.send(uid, friend_uid, message);
+        String hub_id = msg.getHub_id();
+        if(mdi.send(host_id, guest_id, message, hub_id)==500){
+            return "查询错误";
+        }
         return "200";
     }
 
@@ -31,6 +34,7 @@ public class MessageServiceImplement implements MessageService {
     public String push(MessageEntity msg, @PathVariable String toUid) {
         Message sendMsg = new Message(msg.getGuest_id(),msg.getMessage());
         WebSocketServer wss = new WebSocketServer();
+        //待完善
         return "200";
     }
 

@@ -32,7 +32,6 @@ public class UserDaoImplement implements UserDao{
             return user;
         }, uid);//query方法的参数为sql语句，接收返回值的对象，查询用的变量，此处的lambda函数和uid对应后两个
 
-        //以下代码可能有BUG！！未排查！！！具体就是如果userInfo是否不会为空，query会返回一个NULL之类的？
         if(userInfo.isEmpty()){
             return "null";//查无此人 query无返回，userInfo为空
         }

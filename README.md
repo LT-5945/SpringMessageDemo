@@ -34,19 +34,20 @@ http://localhost:8080/findfriend
     	
     }
     
-发消息的json样例：
+发送消息的json样例：
 
-http://localhost:8080/getMsg
+http://localhost:8080/send
 
     {
-    
-    	"host_id":"17080213",    	
-    	"guest_id":"17080212",
-    	"message":"You are a guest user!"
-    	
+    	"host_id":"17080213",
+    	"guest_id":"17080211",
+    	"message":"You are a guest user!",
+    	"hub_id":"002"
     }
     
 查询消息的json样例：
+
+http://localhost:8080/getMsg
 
     {
     	"host_id":"17080213",

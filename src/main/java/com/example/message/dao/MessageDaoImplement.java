@@ -20,11 +20,22 @@ public class MessageDaoImplement implements MessageDao {
     }
 
     @Override//将信息插入数据库
-    public int send(String uid, String friend_uid, String message) {
+    //目前只能接受符合规则的输入，一切异常输入和查无此人都没有做！！！
+    public int send(String host_id, String guest_id, String message, String hub_id) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-        String msg_id = uid + friend_uid + df.format(new Date());// new Date()为获取当前系统时间
-        return jdbcTemplate.update("INSERT INTO message(msg_id,host_id, guest_id, message) values (?,?,?,?)",
-                msg_id, uid, friend_uid, message);
+        String msg_id = host_id + guest_id + df.format(new Date());// new Date()为获取当前系统时间
+        List<MessageEntity> msgInfo = jdbcTemplate.query("SELECT message FROM message " +
+                        "WHERE host_id=? AND guest_id=? AND hub_id=?",
+                (resultSet,i) ->{
+                    MessageEntity me = new MessageEntity();
+                    me.setMessage(resultSet.getString("message"));
+                    return me;
+                },host_id,guest_id,hub_id);
+        if(msgInfo.isEmpty()){
+            return 500;
+        }
+        return jdbcTemplate.update("INSERT INTO message(msg_id,host_id,guest_id,message,hub_id) values(?,?,?,?,?)",
+                msg_id, host_id, guest_id, message, hub_id);
     }
 
     @Override//客人主动获取
@@ -36,10 +47,11 @@ public class MessageDaoImplement implements MessageDao {
                     me.setMessage(resultSet.getString("message"));
                     return me;
                 },host_id,guest_id,hub_id);
-        MessageEntity msg = msgInfo.get(0);
-        if(msg.equals("null")){
+        if(msgInfo.isEmpty()){
             return "NOT FOUND";
         }
+        MessageEntity msg = msgInfo.get(0);
         return msg.getMessage();
     }
+
 }
