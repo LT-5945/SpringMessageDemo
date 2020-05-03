@@ -51,6 +51,5 @@ http://localhost:8080/getMsg
 
     {
     	"host_id":"17080213",
-    	"guest_id":"17080211",
-    	"msg_type":100
+    	"guest_id":"17080211"
     }
