@@ -1,7 +1,7 @@
 一、建表（数据库名称为CISCN）
 数据库SQL脚本：
   
-  `CREATE TABLE `message` (
+CREATE TABLE `message` (
      `msg_id` varchar(45) NOT NULL,
      `host_id` varchar(45) NOT NULL,
      `guest_id` varchar(45) NOT NULL,
@@ -9,9 +9,9 @@
      `msg_type` int(11) NOT NULL,
      PRIMARY KEY (`msg_id`),
      UNIQUE KEY `msg_id_UNIQUE` (`msg_id`)
-   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`
+   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
    
-  `CREATE TABLE `user` (
+CREATE TABLE `user` (
      `uid` varchar(45) NOT NULL,
      `username` varchar(45) NOT NULL,
      `password` varchar(45) NOT NULL,
@@ -21,7 +21,7 @@
      UNIQUE KEY `username_UNIQUE` (`username`),
      UNIQUE KEY `uid_UNIQUE` (`uid`),
      UNIQUE KEY `phone_num_UNIQUE` (`phone_num`)
-   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci`
+   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 二、生成测试样例
 
