@@ -3,7 +3,6 @@ package com.example.message.service;
 import com.example.message.dao.UserDaoImplement;
 import com.example.message.entity.LoginByUidEntity;
 import com.example.message.entity.SigninEntity;
-import com.example.message.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,7 +30,7 @@ public class UserServiceImplement implements UserService {
 
     //@PostMapping("/login")
     @Override
-    //此处接受的json内的变量命名必须和@RequestBody中的对象内变量严格对应（顺序和变量名）
+    //此处接受的json内的变量命名必须和@RequestBody中的对象内变量名严格对应
     public String loginByUid(@RequestBody LoginByUidEntity login) {//可以直接接受json，但是需要调整UserEntity，换一个类来接收
         String uid = login.getUid();
         String password= login.getPassword();
