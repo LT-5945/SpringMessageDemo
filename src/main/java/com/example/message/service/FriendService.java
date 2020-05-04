@@ -1,6 +1,7 @@
 package com.example.message.service;
 
 import com.example.message.entity.FriendEntity;
+import com.example.message.entity.QueryFriendEntity;
 
 public interface FriendService {
     /**
@@ -8,5 +9,6 @@ public interface FriendService {
      * @param friend
      * @return
      */
-    String addFriendByUid(FriendEntity friend);
+    int addFriendByUid(FriendEntity friend);
+    String queryFriendByUid(QueryFriendEntity query);
 }

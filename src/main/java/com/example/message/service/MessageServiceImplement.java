@@ -18,19 +18,19 @@ public class MessageServiceImplement implements MessageService {
 
     @PostMapping("/send")
     @Override
-    public String send(@RequestBody MessageEntity msg) {//目的是存入数据库留下记录
+    public int send(@RequestBody MessageEntity msg) {//目的是存入数据库留下记录
         String host_id = msg.getHost_id();
         String guest_id = msg.getGuest_id();
         String message = msg.getMessage();
         int msg_type = msg.getMsg_type();
         int flag=mdi.send(host_id, guest_id, message, msg_type);
         if(flag==500){
-            return "朋友列表为空";
+            return 406;//朋友列表为空
         }
         else if(flag==404){
-            return "查无此朋友";
+            return 404;//查无此朋友
         }
-        return "200";
+        return 200;
     }
 
     @RequestMapping("/push/{toUid}")

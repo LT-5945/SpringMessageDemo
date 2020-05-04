@@ -31,6 +31,21 @@ public class FriendDaoImplement implements FriendDao{
     }
 
     @Override
+    public String findPhoneNumByUid(String friend_uid){
+        List<UserEntity> userInfo = jdbcTemplate.query("SELECT phone_num FROM user WHERE uid = ?",
+                (resultSet, i) -> {
+                    UserEntity user = new UserEntity();
+                    user.setPhoneNum(resultSet.getString("phone_num"));
+                    return user;
+                }, friend_uid);//query方法的参数为sql语句，接收返回值的对象，查询用的变量，此处的lambda函数和uid对应后两个
+        if(userInfo.isEmpty()){
+            return "Empty";//查无此人 query返回什么？ query什么都不返回，编译器似乎默认一个null出来（注意：不是"null"）
+        }
+        UserEntity user = userInfo.get(0);//这里不check非空的话会报错，需要先check是否为空！！！
+        return user.getPhoneNum();
+    }
+
+    @Override
     public int insertFriend(String uid, String friend_uid) {
         List<UserEntity> userInfo = jdbcTemplate.query("SELECT friend_uid_list FROM user WHERE uid = ?",
                 (resultSet, i) -> {
@@ -40,7 +55,6 @@ public class FriendDaoImplement implements FriendDao{
                 }, uid);//查询自己的friend_uid_list
         UserEntity user = userInfo.get(0);
         String friend_uid_list = user.getFriendUidList();
-        System.out.print(user+"AaA"+null+"CNM");
         if(friend_uid_list == null || friend_uid_list.isEmpty()){//如果为空
             friend_uid_list = friend_uid;
         }

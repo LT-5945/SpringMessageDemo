@@ -6,7 +6,9 @@ public interface FriendDao {
      * @param uid
      * @return
      */
-    String findFriendByUid(String uid);
+    String findFriendByUid(String friend_uid);
+
+    String findPhoneNumByUid(String friend_uid);
 
     /**
      *

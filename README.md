@@ -47,6 +47,8 @@ http://localhost:8080/signin
     	
     }
 
+返回类型：400 失败，200 成功。
+
 登陆的json样例：
 
 
@@ -59,6 +61,8 @@ http://localhost:8080/login
     	
     }
 
+返回类型：400 失败，200 成功。
+
 加好友的json样例：
 
 http://localhost:8080/findfriend
@@ -69,6 +73,8 @@ http://localhost:8080/findfriend
     	"friend_uid":"17080212"
     	
     }
+
+返回类型：更新后的好友列表
     
 发送消息的json样例：
 
@@ -80,6 +86,8 @@ http://localhost:8080/send
     	"message":"You are a guest user!",
     	"msg_type":100
     }
+
+返回类型：406 朋友列表为空，404 查无此朋友，200 成功。
     
 查询消息的json样例：
 
@@ -89,4 +97,29 @@ http://localhost:8080/getMsg
     	"host_id":"17080213",
     	"guest_id":"17080211"
     }
+
+返回：
+
+    {
+        "host_id":"17080214",
+	    "guest_id":"17080211",
+    	"message":"You are a guest user!",
+    	"msg_type":100
+    }
     
+    
+好友信息查询：post：
+
+http://localhost:8080/queryFriend
+
+    {
+        "friend_uid": "17080213"
+    }
+
+返回：
+
+    {
+        "friend_uid": "17080213",
+        "username": "value",
+        "phoneNum": "value"
+    }

@@ -7,4 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class FriendController {
     @RequestMapping("/findfriend")
     public String find(){return "/findfriend";}
+/*
+    @RequestMapping("/queryFriend")
+    public String query(){return "/queryFriend";}
+
+ */
 }
