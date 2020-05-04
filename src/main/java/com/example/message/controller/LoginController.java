@@ -13,8 +13,10 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
     @Autowired
     HttpSession session;
-
+/*
     @RequestMapping("/login")
     public String login(){
         return "/login"; }
+
+ */
 }
