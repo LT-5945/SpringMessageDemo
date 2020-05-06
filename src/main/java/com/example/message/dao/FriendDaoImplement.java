@@ -46,7 +46,7 @@ public class FriendDaoImplement implements FriendDao{
     }
 
     @Override
-    public int insertFriend(String uid, String friend_uid) {
+    public String insertFriend(String uid, String friend_uid) {
         List<UserEntity> userInfo = jdbcTemplate.query("SELECT friend_uid_list FROM user WHERE uid = ?",
                 (resultSet, i) -> {
                     UserEntity user = new UserEntity();
@@ -61,6 +61,7 @@ public class FriendDaoImplement implements FriendDao{
         else{
             friend_uid_list = friend_uid_list + friend_uid + " ";//用空格隔开每个friend
         }
-        return jdbcTemplate.update("UPDATE user SET friend_uid_list = ? WHERE (uid = ?)",friend_uid_list, uid);
+        jdbcTemplate.update("UPDATE user SET friend_uid_list = ? WHERE (uid = ?)",friend_uid_list, uid);
+        return friend_uid_list;
     }
 }

@@ -19,20 +19,16 @@ public class FriendServiceImplement implements FriendService{
 
     @PostMapping("/findfriend")
     @Override
-    public int addFriendByUid(@RequestBody FriendEntity friend) {
+    public String addFriendByUid(@RequestBody FriendEntity friend) {
         String uid = friend.getUid();
         String friend_uid = friend.getFriend_uid();
         String username = fdi.findFriendByUid(friend_uid);//获取用户名，为以后的确认加好友界面作准备，目前暂时不做该页面跳转
         if(username.equals("Empty")){//接受返回的"Empty"朋友列表为空
-            return 404;//user not found
+            return "404";//user not found
         }
-        int flag = fdi.insertFriend(uid, friend_uid);//加好友
-        if(flag == 1){
-            return 200;//加好友成功
-        }
-        else{
-            return 500;
-        }
+        String friend_uid_list = fdi.insertFriend(uid, friend_uid);//加好友
+        String result="{" + "\"friend_uid_list\":"+"\""+friend_uid_list+"\""+"}";
+        return result;
     }
 
     @PostMapping("queryFriend")

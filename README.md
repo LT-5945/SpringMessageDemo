@@ -74,7 +74,14 @@ http://localhost:8080/findfriend
     	
     }
 
-返回类型：更新后的好友列表
+返回类型：
+
+正常状态
+
+    {
+        "friend_uid_list":"17080211 17080212 "
+    }
+异常状态："404" //String类型
     
 发送消息的json样例：
 
@@ -107,6 +114,7 @@ http://localhost:8080/getMsg
     	"msg_type":100
     }
     
+异常返回：NOT FOUND
     
 好友信息查询：post：
 
@@ -123,3 +131,5 @@ http://localhost:8080/queryFriend
         "username": "value",
         "phoneNum": "value"
     }
+
+异常返回：如果查无此人返回的value为"Empty"
