@@ -114,6 +114,10 @@ http://localhost:8080/getMsg
     	"msg_type":100
     }
     
+多个消息：
+
+    {"guest_id":"17080211","host_id":"17080212","message":"You are a guest user!","msg_type":100}{"guest_id":"17080211","host_id":"17080212","message":"You are another guest user!","msg_type":100}    
+    
 异常返回：NOT FOUND
     
 好友信息查询：post：

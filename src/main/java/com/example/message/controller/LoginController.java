@@ -16,22 +16,17 @@ public class LoginController {
 
 
     @RequestMapping("/login")
-    public String login(@RequestParam("browser") String browser, HttpServletRequest request, HttpSession session){
+    public String login(@RequestParam("username") String username, HttpServletRequest request, HttpSession session){
         //取出session中的browser
-        Object sessionBrowser = session.getAttribute("browser");
+        Object sessionBrowser = session.getAttribute("username");
         if (sessionBrowser == null) {
-            System.out.println("不存在session，设置browser=" + browser);
-            session.setAttribute("browser", browser);
+            System.out.println("不存在session，设置username=" + username);
+            session.setAttribute("username", username);
+            return "/login";
         } else {
-            System.out.println("存在session，browser=" + sessionBrowser.toString());
+            System.out.println("存在session，username=" + sessionBrowser.toString());
+            System.out.println("存在session=" + session.toString());
+            return "/findfriend";
         }
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null && cookies.length > 0) {
-            for (Cookie cookie : cookies) {
-                System.out.println(cookie.getName() + " : " + cookie.getValue());
-            }
-        }
-        return "/findfriend"; }
-
-
+    }
 }

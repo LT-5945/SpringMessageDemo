@@ -61,8 +61,12 @@ public class MessageDaoImplement implements MessageDao {
         if(msgInfo.isEmpty()){
             return "NOT FOUND";
         }
-        MessageEntity msg = msgInfo.get(0);
-        String respond = JSON.toJSONString(msg);
+        int size = msgInfo.size();
+        String respond = "";
+        for(int i=0;i<size;i++){
+            MessageEntity msg = msgInfo.get(i);
+            respond += JSON.toJSONString(msg);
+        }
         return respond;
     }
 
