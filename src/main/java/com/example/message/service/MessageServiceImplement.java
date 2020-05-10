@@ -48,6 +48,8 @@ public class MessageServiceImplement implements MessageService {
     public String getMsg(@RequestBody SendMessageEntity sendMsg) {
         String host_id = sendMsg.getHost_id();
         String guest_id = sendMsg.getGuest_id();
-        return mdi.get(host_id, guest_id);
+        String msg = mdi.get(host_id, guest_id);
+        mdi.delete(host_id,guest_id);
+        return msg;
     }
 }

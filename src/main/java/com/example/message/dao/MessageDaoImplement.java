@@ -70,4 +70,8 @@ public class MessageDaoImplement implements MessageDao {
         return respond;
     }
 
+    @Override
+    public int delete(String host_id, String guest_id){
+        return jdbcTemplate.update("DELETE FROM message WHERE host_id=? AND guest_id=?",host_id,guest_id);
+    }
 }

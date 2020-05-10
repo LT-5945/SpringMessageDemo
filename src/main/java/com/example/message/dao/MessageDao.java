@@ -4,4 +4,5 @@ package com.example.message.dao;
 public interface MessageDao {
     int send(String uid, String friend_uid, String message, int msg_type);
     String get(String host_id, String guest_id);
+    int delete(String host_id, String guest_id);
 }
