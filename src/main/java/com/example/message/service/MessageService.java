@@ -7,4 +7,5 @@ public interface MessageService {
     int send(MessageEntity msg);
     String push(MessageEntity msg, String toUid);
     String getMsg(SendMessageEntity sendMsg);
+
 }

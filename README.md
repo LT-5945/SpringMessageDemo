@@ -1,3 +1,21 @@
+登陆session的说明：
+
+url: http://localhost:8080/check
+
+样例：
+
+    {
+    
+    	"uid":"17080213",    	
+    	"password":"123"
+    	
+    }
+
+返回类型：400 没有session，200 有session。然后前端再设置访问login或者其他接口
+
+
+
+
 一、建表（数据库名称为CISCN）
 数据库SQL脚本：
   

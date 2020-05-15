@@ -52,4 +52,6 @@ public class MessageServiceImplement implements MessageService {
         mdi.delete(host_id,guest_id);
         return msg;
     }
+
+
 }

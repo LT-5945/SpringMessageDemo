@@ -15,9 +15,10 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
 
 
-    @RequestMapping("/login")
-    public String login(@RequestParam("username") String username, HttpServletRequest request, HttpSession session){
+    @RequestMapping("/check")
+    public String login(LoginByUidEntity login, HttpSession session){
         //取出session中的browser
+        /*
         Object sessionBrowser = session.getAttribute("username");
         if (sessionBrowser == null) {
             System.out.println("不存在session，设置username=" + username);
@@ -28,5 +29,17 @@ public class LoginController {
             System.out.println("存在session=" + session.toString());
             return "/findfriend";
         }
+        Object sessionUid = session.getAttribute("uid");
+        String uid = login.getUid();
+        String password= login.getPassword();
+        if(sessionUid == null){
+            System.out.println("不存在session，uid=" + uid);
+            session.setAttribute("uid", uid);
+            return "/check";//没有session
+        }else{
+            return "findfriend";//有session，访问login接口
+        }
+        */
+        return null;
     }
 }

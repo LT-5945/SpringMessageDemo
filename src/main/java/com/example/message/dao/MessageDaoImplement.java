@@ -25,6 +25,22 @@ public class MessageDaoImplement implements MessageDao {
     public int send(String host_id, String guest_id, String message, int msg_type) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         String msg_id = host_id + guest_id + df.format(new Date());// new Date()为获取当前系统时间
+        /*
+        if(msg_type==999){//说明这是一条加好友信息
+            //此时的host_id为申请加好友的客人，guest_id为主人
+            List<UserEntity> userInfo = jdbcTemplate.query("SELECT friend_uid_list FROM user WHERE uid = ?",
+                    (resultSet, i) -> {
+                        UserEntity user = new UserEntity();
+                        user.setFriendUidList(resultSet.getString("friend_uid_list"));
+                        return user;
+                    }, guest_id);//查询主人的friend_uid_list
+            UserEntity user = userInfo.get(0);//非空，new出的对象内元素皆为null
+            String friend_uid_list = user.getFriendUidList();
+            if(friend_uid_list.indexOf(host_id)!=-1){//如果没有host_id则返回-1
+
+            }
+        }
+         */
         List<UserEntity> userInfo = jdbcTemplate.query("SELECT friend_uid_list FROM user WHERE uid = ?",
                 (resultSet, i) -> {
                     UserEntity user = new UserEntity();
