@@ -1,3 +1,6 @@
+运行out文件下下jar包的说明：使用"nohup java -jar SpringMessageDemo.jar"即可使其不间断运行。
+
+
 登陆session的说明：
 
 url: http://localhost:8080/check

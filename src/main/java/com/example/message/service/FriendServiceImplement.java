@@ -41,4 +41,11 @@ public class FriendServiceImplement implements FriendService{
         String jsonOut = JSON.toJSONString(respond);
         return jsonOut;
     }
+
+    //用于JMeter测试
+    @PostMapping("/jmeter")
+    @Override
+    public String insertFriend(){
+        return fdi.findFriendByUid("17080213");
+    }
 }

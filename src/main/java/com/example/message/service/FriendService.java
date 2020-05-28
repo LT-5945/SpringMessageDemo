@@ -7,4 +7,5 @@ public interface FriendService {
 
     String addFriendByUid(FriendEntity friend);
     String queryFriendByUid(QueryFriendEntity query);
+    String insertFriend();
 }
